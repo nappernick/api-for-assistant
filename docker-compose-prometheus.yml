@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - prometheus_data:/etc/prometheus
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+    networks:
+      - monitoring
+    labels:
+      com.example.description: "Prometheus monitoring service"
+  
+  grafana:
+    image: grafana/grafana
+    env_file:
+      - grafana.env
+    volumes:
+      - grafana_data:/var/lib/grafana
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+      update_config:
+        delay: 10s
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+    labels:
+      com.example.description: "Grafana dashboard service"
+
+  api:
+    build: ./src
+    deploy:
+      replicas: 3 # Example of scaling out a service with multiple replicas
+      update_config:
+        parallelism: 2
+        delay: 10s
+      labels:
+        com.example.description: "API Gateway"
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+
+networks:
+  monitoring:
+    driver: overlay
+
+volumes:
+  prometheus_data:
+  grafana_data:

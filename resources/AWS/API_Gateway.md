@@ -1,0 +1,14 @@
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-settings-method-request.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-settings-method-response.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-integration-settings-integration-request.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/integration-request-basic-setup.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-data-transformations-in-api-gateway.html#mapping-example-console
+https://docs.aws.amazon.com/apigateway/latest/developerguide/request-response-data-mappings.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-payload-encodings.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-payload-encodings-workflow.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-content-encodings-examples-image-lambda.html
+https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/aws-lambda.html
+https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/mobile-backend.html
+https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/
+https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-set-up-method-using-console.html#how-to-method-settings-callers-console

@@ -1,0 +1,45 @@
+org: raesapigateway
+app: api-gateway
+service: api-gateway
+frameworkVersion: '3'
+
+plugins:
+ - 'serverless-plugin-typescript'
+ - serverless-plugin-optimize
+ - serverless-offline
+
+provider:
+ name: aws
+ runtime: nodejs18.x
+ region: us-east-1 # Replace with your AWS region
+ environment:
+   DB_HOST: raes-prod-db-001.c9igrwgeoj2u.us-east-1.rds.amazonaws.com
+   DB_NAME: DBACME_APIDEV
+   DB_USER: dbuacme_apidev
+   DB_PASSWORD: D88uyEMe8e1oSERaWahO6uHA5aX23I
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - resources/**
+
+functions:
+  getLeads:
+    handler: ./src/Lambdas/leads-lambda.handler
+    events:
+      - http:
+          path: leads/{userId}
+          method: get
+  getInvoices:
+    handler: ./src/Lambdas/invoices-lambda.handler
+    events:
+      - http:
+          path: invoices/{userId}
+          method: get
+  # postPhoto:
+  #   handler: path/to/your.handler
+  #   events:
+  #     - http:
+  #         path: photos
+  #         method: post

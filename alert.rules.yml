@@ -1,0 +1,54 @@
+- alert: UploadFailuresDueToCapacity
+  expr: increase(upload_failures_total{reason="capacity"}[5m]) > 10
+  for: 1m
+  labels:
+    severity: critical
+  annotations:
+    summary: "High number of upload failures due to capacity"
+
+
+- alert: CompressionFailures
+  expr: increase(compression_failures_total[10m]) > 5
+  for: 2m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Unusually high compression failure rate"
+
+groups:
+- name: ErrorRate
+  rules:
+  - alert: HighErrorRate
+    expr: rate(http_requests_total{status=~"5.."}[5m]) > 1
+    for: 1m
+    labels:
+      severity: "critical"
+    annotations:
+      summary: High error rate detected
+
+
+- alert: HighLoginChallenges
+  expr: increase(login_challenges_total[10m]) / increase(login_attempts_total[10m]) > 0.5
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "High rate of login challenges"
+
+
+- alert: DatabaseWriteFailures
+  expr: rate(db_write_failures_total[5m]) > 2
+  for: 3m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Increased rate of write failures in the database"
+
+
+- alert: DatabaseReadFailures
+  expr: rate(db_read_failures_total[5m]) > 3
+  for: 3m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Increased rate of read failures in the database"
